@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio de Login - Engenharia Social</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Nome de usuário</label>
+            <input type="text" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+            <input type="submit" value="Entrar">
+        </form>
+        <p id="errorMessage" class="error" style="display: none;">Senha incorreta. Tente novamente.</p>
+    </div>
+
+    <script>
+        // Função para decodificar a senha ofuscada
+        function decodePassword() {
+            const encodedPassword = "Ym9i";  // Senha codificada em Base64 (senha "bob")
+            const decodedPassword = atob(encodedPassword); // Decodifica a senha
+            return decodedPassword;
+        }
+
+        // Função para verificar login
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Impede o envio do formulário
+
+            // Pega os valores do formulário
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Verifica se o nome de usuário e a senha estão corretos
+            if (username === "alfredosilva" && password === decodePassword()) {
+                // Redireciona para a página de sucesso após o login
+                window.location.href = "https://mathesanto.github.io/sucesso;  // Página de sucesso
+            } else {
+                // Exibe uma mensagem de erro
+                document.getElementById("errorMessage").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
